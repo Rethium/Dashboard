@@ -1,10 +1,10 @@
 version: "3.7" 
 services:
-  rethium_dashboard:
+  Rethium_Dashboard:
     build:
       context: ./
       dockerfile: ./deployment/Dockerfile
     ports:
-      - "8000:8000"
+      - "5050:5050"
     volumes:
       - ./:/rethium_dashboard
