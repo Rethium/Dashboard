@@ -1,0 +1,4 @@
+Resources
+*.pyc
+.password
+__pycache__/
