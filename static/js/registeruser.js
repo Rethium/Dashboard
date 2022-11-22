@@ -9,11 +9,14 @@ var GetAllUsers = function () {
             const jsondata = JSON.parse(xhr.responseText);
             console.log(jsondata)
             // for key value in json console key value
+            iter = 0
             Object.keys(jsondata).forEach(function (key) {
+                console.log(key, jsondata[key]);
                 document.getElementById('userlist').appendChild(GetTemplate(key));
-                document.getElementsByClassName("uuidvalue")[key - 1].innerHTML = jsondata[key].uuid;
-                document.getElementsByClassName("companyname")[key - 1].innerHTML = jsondata[key].company;
-                document.getElementsByClassName("macidvalues")[key - 1].innerHTML = jsondata[key].macid;
+                document.getElementsByClassName("uuidvalue")[iter].innerHTML = jsondata[key].uuid;
+                document.getElementsByClassName("companyname")[iter].innerHTML = jsondata[key].company;
+                document.getElementsByClassName("macidvalues")[iter].innerHTML = jsondata[key].macid;
+                iter+=1
             });
         }
     }
@@ -47,9 +50,6 @@ var deleteuser = function (node) {
         }
     }
 
-}
-var viewgraph = function (node) {
-    let id=node.id
 }
 
 var GetAllCompanies = function () {
