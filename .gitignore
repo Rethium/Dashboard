@@ -2,3 +2,5 @@ Resources
 *.pyc
 .password
 __pycache__/
+.DS_Store
+logs/

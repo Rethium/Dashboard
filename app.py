@@ -1,21 +1,33 @@
+import logging as lg
+import os
+import subprocess
+from os import getcwd, path
+
 from flask import *
-from requests import request as req
-from modules import *
 from flask import render_template
 from flask_cors import CORS, cross_origin
-import subprocess
-import os
+
+from modules.modules import *
+from modules.setup_instance import *
+
+lg.basicConfig(
+    filename='logs/app.log',
+    filemode='a',
+    level=lg.DEBUG,
+    format='[%(asctime)s] {%(pathname)s:%(lineno)d} %(levelname)s - %(message)s',
+    datefmt='%H:%M:%S'
+)
 
 app = Flask(__name__, static_url_path='/static')
-app.config['UPLOAD_FOLDER'] = 'static/uploads'
+app.config['UPLOAD_FOLDER'] = '/static/uploads'
+app.config['TEMPLATES_AUTO_RELOAD'] = True
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
-cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
-
+cors = CORS(app)
 
 @app.route('/')
 @app.route('/signin')
-def hello_world():
+def sign_in():
     return render_template('sign_in.html')
 
 
