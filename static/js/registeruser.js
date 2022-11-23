@@ -15,7 +15,7 @@ var GetAllUsers = function () {
                 document.getElementById('userlist').appendChild(GetTemplate(key));
                 document.getElementsByClassName("uuidvalue")[iter].innerHTML = jsondata[key].uuid;
                 document.getElementsByClassName("companyname")[iter].innerHTML = jsondata[key].company;
-                document.getElementsByClassName("macidvalues")[iter].innerHTML = jsondata[key].macid;
+                document.getElementsByClassName("macidvalues")[iter].innerHTML = jsondata[key].password;
                 iter+=1
             });
         }

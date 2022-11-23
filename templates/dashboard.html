@@ -127,7 +127,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="/dashboard"
+                                <a href="/batteryDetails"
                                     class="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 flex items-center p-2 group ">
                                     <svg class="w-6 h-6 text-gray-500 flex-shrink-0 group-hover:text-gray-900 transition duration-75"
                                         fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -236,8 +236,34 @@
                         </div>
                     </div>
                     <div class="grid grid-cols-1 2xl:grid-cols-2 xl:gap-4 my-4">
-                        <!-- Top Sales Card -->
-                        <div class="bg-white shadow rounded-lg mb-4 p-4 sm:p-6 h-full">
+
+                        <!--data for users-->
+                        <table style="width: 85%;margin-left: 10px; margin-top:100px" id="tablelayout">
+                            <thead class="bg-gray-100" id="tabledataTD">
+                                <tr>
+                                    <td scope="col" class="p-4 text-left text-xs font-medium text-gray-500 uppercase" id="Company">Company Name</td>
+                                    <td scope="col" class="p-4 text-left text-xs font-medium text-gray-500 uppercase">UUID</td>
+                                    <td scope="col" class="p-4 text-left text-xs font-medium text-gray-500 uppercase">MacID</td>
+                                    <td scope="col" class="p-4 text-left text-xs font-medium text-gray-500 uppercase">STATUS</td>
+                                    <!--<td scope="col" class="p-4 text-left text-xs font-medium text-gray-500 uppercase">Password</td>-->
+        
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+        
+                            </thead>
+        
+                        </table>
+
+
+
+
+
+
+
+                        <!-- Top Sales Card hide -->
+                        <!--<div class="bg-white shadow rounded-lg mb-4 p-4 sm:p-6 h-full">
                             <div class="flex items-center justify-between mb-4">
                                 <h3 class="text-xl font-bold leading-none text-gray-900">Sample Table</h3>
                             </div>
@@ -345,12 +371,12 @@
                                     </li>
                                 </ul>
                             </div>
-                        </div>
-                        <!-- Sessions by device Card -->
-                        <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
+                        </div>-->
+                        <!-- Sessions by device Card hide -->
+                        <!--<div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">-->
                             <!-- Card Title -->
-                            <h3 class="text-xl leading-none font-bold text-gray-900 mb-10">Sample Table</h3>
-                            <div class="block w-full overflow-x-auto">
+                            <!--<h3 class="text-xl leading-none font-bold text-gray-900 mb-10">Sample Table</h3>-->
+                            <!--<div class="block w-full overflow-x-auto">
                                 <table class="items-center w-full bg-transparent border-collapse">
                                     <thead>
                                         <tr>
@@ -482,13 +508,65 @@
                                         </tr>
                                     </tbody>
                                 </table>
-                            </div>
-                        </div>
+                            </div>-->
+                        <!--</div>-->
                     </div>
                 </div>
             </main>
         </div>
     </div>
+    <script>
+        const tabledata = document.getElementById('tablelayout');
+        fetch('http://165.232.181.217:8000/GetAllUsers').then((data) =>{
+            console.log("data",data)
+            return data.json();
+        }).then((completedata)=>{
+            console.log("completedValue0",completedata);
+            completedata.map((details)=>{
+                const tableRow = document.createElement("tr");
+                //tableRow.style.borderBottom = "1px solid black";
+                const checkBox = document.createElement("input");
+                //checkBox.type = "checkbox";
+                const data5 = document.createElement("td");
+                const data6 = document.createElement("td");
+                //const data7 = document.createElement("td");
+                const data8 = document.createElement("td");
+                const data9 = document.createElement("td");
+
+                data5.innerHTML = `${details[3]}`;
+                data6.innerText = details[1];
+                //data7.innerText = e[2];
+                data8.innerText = details[4];
+                data9.innerHTML = `<div style="height : 15px; width : 15px; border-radius:7.5px;  margin-top : 2px"><div id="active" style="height:10px; width:10px;  border-radius : 5px; margin : 1.5px; background : green;margin-top:5px"></div></div> <span id="Active">${"Active"}</span>`;
+                data9.style.display = "flex";
+                const viewButton = document.createElement("td");
+                viewButton.innerHTML = `<a href=""><button type="button" data-modal-toggle="user-modal" class="text-white bg-cyan-600 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 font-medium rounded-lg text-sm inline-flex items-center px-3 py-2 text-center"">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+                                            <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"/>
+                                            <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
+                                        </svg>
+                                    ${"View Data"}
+                                    </button></a>`;
+                const editButton = document.createElement("td");
+                editButton.innerHTML = ``;
+                const deleteButton = document.createElement("td");
+                deleteButton.innerHTML =  ``;
+                tableRow.append(data5,data6,data8,data9,viewButton,editButton,deleteButton);
+                tabledata.append(tableRow);
+                console.log(tableRow);
+
+            })
+            console.log("completedValue1",completedata[1]);
+        })
+        function graph(){
+            window.location="/graph"
+        }
+
+
+        function adduser(){
+            window.location="/registeruser"
+        }
+    </script>
     <script src="https://demo.themesberg.com/windster/app.bundle.js"></script>
 </body>
 

@@ -36,6 +36,15 @@ def dashboard():
     return render_template('dashboard.html')
 
 
+#battery details route
+
+@app.route('/batteryDetails')
+def batteryDetails():
+    return render_template('batteryDetails.html')
+
+
+
+
 @app.route('/registeruser')
 @cross_origin()
 def registeruser():
